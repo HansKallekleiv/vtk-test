@@ -184,10 +184,10 @@ def run_dash(b64_polys, b64_points, b64_scalar, value_range):
 
 
 if __name__ == "__main__":
-    # roff_grid_file = "./eclgrid.roff"
-    # roff_scalar_file = "./eclgrid--poro.roff"
-    roff_grid_file = "./geogrid.roff"
-    roff_scalar_file = "./geogrid--phit.roff"
+    roff_grid_file = "./eclgrid.roff"
+    roff_scalar_file = "./eclgrid--poro.roff"
+    # roff_grid_file = "./geogrid.roff"
+    # roff_scalar_file = "./geogrid--phit.roff"
     xtg_grid = xtgeo.grid_from_file(roff_grid_file)
     xtg_scalar = xtgeo.gridproperty_from_file(roff_scalar_file)
     fill_value = np.nan if not xtg_scalar.isdiscrete else -1
