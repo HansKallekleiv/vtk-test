@@ -154,7 +154,7 @@ def run_dash(b64_polys, b64_points, b64_scalar, value_range):
         autoResetCamera=True,
         children=[
             webviz_vtk.GeometryRepresentation(
-                actor={"scale": (1, 1, 10)},
+                actor={"scale": (1, 1, 20)},
                 # showCubeAxes=True, # Only if scale is 1
                 showScalarBar=True,
                 colorDataRange=value_range,
@@ -200,7 +200,13 @@ if __name__ == "__main__":
     polys = surface_polys.poly_arr
     points = surface_polys.point_arr
     scalar = property_scalars.value_arr
-
+    points2 = []
+    for idx,point in enumerate(points):
+        if 300000 <= point <= 1000000:
+            points[idx] = points[idx] - 456000
+            
+        if point > 4000000:
+            points[idx] = points[idx] - 5935990
     with open("polys.json", "w") as f:
         f.write(json.dumps(polys.tolist()))
     with open("points.json", "w") as f:
@@ -208,7 +214,7 @@ if __name__ == "__main__":
     with open("scalar.json", "w") as f:
         f.write(json.dumps(scalar.tolist()))
 
-    b64_polys = b64_encode_numpy(polys.astype(np.float32))
+    b64_polys = b64_encode_numpy(polys)
     b64_points = b64_encode_numpy(points.astype(np.float32))
     b64_scalar = b64_encode_numpy(scalar.astype(np.float32))
     value_range = [
