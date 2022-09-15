@@ -188,6 +188,7 @@ if __name__ == "__main__":
     roff_scalar_file = "./eclgrid--poro.roff"
     # roff_grid_file = "./geogrid.roff"
     # roff_scalar_file = "./geogrid--phit.roff"
+
     xtg_grid = xtgeo.grid_from_file(roff_grid_file)
     xtg_scalar = xtgeo.gridproperty_from_file(roff_scalar_file)
     fill_value = np.nan if not xtg_scalar.isdiscrete else -1
@@ -201,12 +202,17 @@ if __name__ == "__main__":
     points = surface_polys.point_arr
     scalar = property_scalars.value_arr
     points2 = []
+    points3=[]
     for idx,point in enumerate(points):
         if 300000 <= point <= 1000000:
-            points[idx] = points[idx] - 456000
+            # points2.append(point)
+            points[idx] = points[idx] - 450000
             
         if point > 4000000:
-            points[idx] = points[idx] - 5935990
+            # points3.append(point)
+            points[idx] = points[idx] - 5925000
+    # print(np.min(points2),np.max(points2))
+    # print(np.min(points3),np.max(points3))
     with open("polys.json", "w") as f:
         f.write(json.dumps(polys.tolist()))
     with open("points.json", "w") as f:
